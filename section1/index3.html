@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+    <title>v-show,v-if,v-for</title>
+</head>
+<body>
+    <div id="app">
+        <!-- <div v-show='isDisplay'>表示</div>
+        <div v-show='!isDisplay'>falseになっています</div>
+
+        <div v-if="isDisplay">ifで表示</div>
+
+        <div v-if="signal==='red'">赤</div>
+        <div v-else-if="signal==='yellow'">黄</div>
+        <div v-else-if="signal==='blue'">青</div>
+        <div v-else>赤青黄ではありません</div> -->
+
+        //配列 (value)
+        <ul>
+            <li v-for="member in members">
+                {{member}}
+            </li>
+        </ul>
+
+        //配列 (value,index)
+        <ul>
+            <li v-for="(member,index) in members">
+               {{index}}:{{member}}
+            </li>
+        </ul>
+
+        //オブジェクト (value)
+        <ul>
+            <li v-for="value in book">
+                {{value}}
+            </li>
+        </ul>
+        //オブジェクト (value,key)
+        <ul>
+            <li v-for="(value,key) in book">
+               {{key}}:{{value}}
+            </li>
+        </ul>
+        //オブジェクト (value,key,index)
+        <ul>
+            <li v-for="(value,key,index) in book">
+              {{index}}:{{key}}:{{value}}
+            </li>
+        </ul>
+
+        //複数のオブジェクト
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>タイトル</th>
+                    <th>著者</th>
+                    <th>URL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="book in books" :key="book.id">
+                    <td>{{book.id}}</td>
+                    <td>{{book.title}}</td>
+                    <td>{{book.author}}</td>
+                    <!-- <td><a :href="book.url">リンク</a></td> -->
+                    <td>{{book.url}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        let app = new Vue({
+            el: "#app",
+            data(){
+                return{
+                   isDisplay: true,
+                   signal: 'red',
+                   members:['ホンダ','ヤマダ','スズキ'],
+                   book:{
+                    title:'タイトル',
+                    author:'著者名',
+                    url: 'https://www.google.com'
+                   },
+                   books:[
+                    {   
+                        id:1,
+                        title:'タイトル',
+                        author:'著者名1',
+                        url: 'https://www.google.com'
+                    },
+                    {
+                        id:2,
+                        title:'タイトル',
+                        author:'著者名2',
+                        url: 'https://www.google.com'
+                    },
+                    {
+                        id:3,
+                        title:'タイトル',
+                        author:'著者名3',
+                        url: 'https://www.google.com'
+                    }
+                   ]
+                }
+            }
+        })
+    </script>
+</body>
+</html>

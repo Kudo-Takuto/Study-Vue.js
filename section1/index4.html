@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+    <title>v-text,v-html,v-cloak</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak><!--仮想DOM-->
+        <div v-text="test"></div> 
+        <div v-html="test"></div>
+        <div v-cloak>{{test1}}</div>
+        <div>{{test2}}</div>
+    </div>
+    
+    <script>
+        setTimeout(()=>{
+            new Vue({
+            el: "#app",
+            data(){
+                return{
+                    test:'あああ <br> いいい',
+                    test1:'v-cloakあり' ,//v-cloakを使うと、データが読み込まれるまで、{{}}が表示されない
+                    test2:'v-cloakなし'
+                }
+            }
+        })
+        },3000)
+    </script>
+</body>
+</html>
